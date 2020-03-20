@@ -1,0 +1,77 @@
+<svg
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   version="1.1"
+   width="105mm" height="74.25mm"
+   viewBox="0 0 1050 742.5"
+   >
+    <!--
+    We use a viewPort 10 times bigger because of a bug that result
+    in an incorrect kerning with small font size on Linux.
+
+    See: https://phabricator.wikimedia.org/T36947
+         https://bugzilla.gnome.org/show_bug.cgi?id=767481
+    -->
+    <style type="text/css">
+    <![CDATA[
+        text {
+            font-family: DejaVu Sans;
+            font-stretch: condensed;
+        }
+
+        .monospace {
+            font-family: OCRB;
+            font-stretch: normal;
+        }
+
+        .preview-only {
+            display: none;
+        }
+
+        .4pt { font-size: 1.41111; }
+        .5pt { font-size: 1.76389; }
+        .6pt { font-size: 2.11667; }
+        .7pt { font-size: 2.46944; }
+        .8pt { font-size: 2.82222; }
+        .9pt { font-size: 3.17499; }
+        .10pt { font-size: 4.93889; }
+        .14pt { font-size: 3.52777; }
+        .16pt { font-size: 5.64444; }
+        .18pt { font-size: 6.3500; }
+        .24pt { font-size: 8.46667; }
+
+        {{ extra_css }}
+    ]]>
+    </style>
+
+    <g id="card-{{ index }}">
+        <g class="main" transform="translate(0, 0)" clip-path="url(#card-main-clip-{{ index }})">
+            <!-- Logo -->
+            <image id="logo" x="90" y="100" width="357.3" height="244.2" preserveAspectRatio="none" xlink:href="data:image/png;base64,{{ card_design['logo']['image'] }}" />
+
+            <!-- QR Code -->
+            <image id="qr" x="742.2" y="100" width="227.8" height="227.8" preserveAspectRatio="none" xlink:href="data:image/png;base64,{{ card['qr_image'] }}" />
+            
+            <!-- text -->
+            <text id="help-text" text-anchor="start" font-size="32" x="80" y="420">
+                <tspan>Help text goes here.</tspan>
+            </text>
+
+            <text id="url" text-anchor="start" font-size="48" x="80" y="500">
+                <tspan font-weight="900">URL:</tspan>
+                <tspan>{{ card_design["url"] }}</tspan>
+            </text>
+            <text id="code" text-anchor="start" font-size="48" x="80" y="570">
+                <tspan font-weight="900">Code:</tspan>
+                <tspan class="monospace">{{ card["code"] }}</tspan>
+            </text>
+            <text id="batch" text-anchor="end" font-size="28" x="970" y="650">
+                <tspan>Batch ID:</tspan>
+                <tspan class="monospace">{{ card["batch"] }}</tspan>
+            </text>
+            
+            <text class="{% if not card_design['preview'] %}preview-only{% endif %}" fill="#DDD" font-size="160" fill-opacity=".75" text-anchor="middle" x="320" y="580" transform="rotate(-25)">PREVIEW</text>
+            
+        </g>
+    </g>
+</svg>

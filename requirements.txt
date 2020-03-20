@@ -1,0 +1,9 @@
+click==7.1
+hashids==1.2.0
+Jinja2==2.10.3
+MarkupSafe==1.1.1
+packaging==19.1
+pdfrw==0.4
+Pillow==6.2.2
+pyparsing==2.4.6
+qrcode==6.1
