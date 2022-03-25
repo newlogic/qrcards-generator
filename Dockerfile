@@ -1,4 +1,4 @@
-FROM python:3.8
+FROM python:3.10-bullseye
 
 RUN apt-get update
 RUN apt-get install -fy librsvg2-bin mupdf-tools
