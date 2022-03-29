@@ -9,7 +9,8 @@ BASE_DIR = os.path.dirname(__file__)
 
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 FONTS_DIR = os.path.join(TEMPLATES_DIR, 'assets', 'fonts')
-QR_FILE_DIR = os.path.join(BASE_DIR, 'qr_codes')
+OUTPUT_DIR = os.path.join(BASE_DIR, 'output')
+QR_FILE_DIR = os.path.join(OUTPUT_DIR, 'qr_codes')
 
 PREVIEW = False
 

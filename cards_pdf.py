@@ -109,8 +109,6 @@ def convert_svgs_to_pdf(svg_files, output):
                 "rsvg-convert",
                 "-f",
                 "pdf",
-                # "--page-width=210mm",
-                # "--page-height=297mm",
                 "-d",
                 "300",
                 "-p",
