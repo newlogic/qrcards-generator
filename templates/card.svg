@@ -14,6 +14,11 @@
             src: url("assets/fonts/OCRAExtended.ttf");
             font-stretch: normal;
         }
+        @font-face {
+            font-family: "OCR B";
+            src: url("assets/fonts/OCRB.ttf");
+            font-stretch: normal;
+        }
     </style>
 
     <g id="card-{{ index }}">
@@ -31,11 +36,11 @@
             </text>
             <text id="code" text-anchor="start" font-family="{{ card_design['card']['font_family'] }}, 'Open Sans', sans-serif" font-size="{{ card_design['card']['font_size']|to_dpi }}" x="{{ card_design['card']['code']['x']|to_dpi }}" y="{{ card_design['card']['code']['y']|to_dpi }}">
                 <tspan font-weight="900">Code:</tspan>
-                <tspan>{{ card["code"] }}</tspan>
+                <tspan font-family="OCR B">{{ card["code"] }}</tspan>
             </text>
             <text id="batch" text-anchor="end" font-family="{{ card_design['card']['font_family'] }}, 'Open Sans', sans-serif" font-size="{{ card_design['card']['font_size_small']|to_dpi }}" x="{{ card_design['card']['batch']['x']|to_dpi }}" y="{{ card_design['card']['batch']['y']|to_dpi }}">
                 <tspan font-weight="900">Batch ID:</tspan>
-                <tspan>{{ card["batch"] }}</tspan>
+                <tspan font-family="OCR B">{{ card["batch"] }}</tspan>
             </text>
             {% if card_design['preview'] %}
                 <text fill="#DDD" font-size="160" fill-opacity=".75" text-anchor="middle" x="320" y="580" transform="rotate(-25)">PREVIEW</text>
