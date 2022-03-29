@@ -14,7 +14,7 @@ QR_FILE_DIR = os.path.join(OUTPUT_DIR, 'qr_codes')
 
 PREVIEW = False
 HASHIDS_SALT = os.environ.get("HASHIDS_SALT", 'TOBECHANGED')
-HASHIDS_MIN_LENGTH = 12
+HASHIDS_MIN_LENGTH = 5
 
 SELF_REGISTRATION_BASE_URL = os.environ.get("SELF_REGISTRATION_BASE_URL", "https://ukr.reg.scope.wfp.org/")
 SELF_REGISTRATION_URL = os.environ.get("SELF_REGISTRATION_URL", f"{SELF_REGISTRATION_BASE_URL}ukr/code/?code=")
