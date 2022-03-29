@@ -5,16 +5,21 @@ from hashids import Hashids
 import settings
 
 
-def get_last_seq():
+def get_last_seq_file(dir):
+    return os.path.join(dir, '.last_seq')
+
+def get_last_seq(dir=settings.BASE_DIR):
     last_seq = 0
-    if os.path.isfile(settings.LAST_SEQ_FILE):
-        with open(settings.LAST_SEQ_FILE, 'r') as f:
+    last_seq_file = get_last_seq_file(dir)
+    if os.path.isfile(last_seq_file):
+        with open(last_seq_file, 'r') as f:
             last_seq = f.read()
     return int(last_seq)
 
 
-def save_last_seq(last_seq):
-    with open(settings.LAST_SEQ_FILE, 'w') as f:
+def save_last_seq(last_seq, dir=settings.BASE_DIR):
+    last_seq_file = get_last_seq_file(dir)
+    with open(last_seq_file, 'w') as f:
         f.write(str(last_seq))
 
 

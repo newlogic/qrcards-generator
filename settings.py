@@ -9,7 +9,6 @@ BASE_DIR = os.path.dirname(__file__)
 
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 FONTS_DIR = os.path.join(TEMPLATES_DIR, 'assets', 'fonts')
-LAST_SEQ_FILE = os.path.join(BASE_DIR, '.last_seq')
 QR_FILE_DIR = os.path.join(BASE_DIR, 'qr_codes')
 
 HASHIDS_SALT = os.environ.get("HASHIDS_SALT", '$6$O1UAtet1RQADaQRI')
