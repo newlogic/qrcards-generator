@@ -1,0 +1,45 @@
+<svg
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   version="1.1"
+   width="90mm" height="70mm"
+   viewBox="0 0 352.653 274.285"
+   >
+    <!--
+    viewBox is converted to 300dpi, optimal for printing
+    -->
+    <style type="text/css">
+        @font-face {
+            font-family: "OCR A Extended";
+            src: url("assets/fonts/OCRAExtended.ttf");
+            font-stretch: normal;
+        }
+    </style>
+
+    <g id="card-{{ index }}">
+        <g class="main" transform="translate(0, 0)" clip-path="url(#card-main-clip-{{ index }})">
+            <!-- Logo -->
+            <image id="logo" x="{{ card_design['logo']['x']|to_dpi }}" y="{{ card_design['logo']['y']|to_dpi }}" width="{{ card_design['logo']['w']|to_dpi }}" height="{{ card_design['logo']['h']|to_dpi }}" preserveAspectRatio="none" xlink:href="data:image/png;base64,{{ card_design['logo']['image'] }}" />
+
+            <!-- QR Code -->
+            <image id="qr" x="{{ card_design['card']['qr']['x']|to_dpi }}" y="{{ card_design['card']['qr']['y']|to_dpi }}" width="{{ card_design['card']['qr']['w']|to_dpi }}" height="{{ card_design['card']['qr']['h']|to_dpi }}" preserveAspectRatio="none" xlink:href="data:image/png;base64,{{ card['qr_image'] }}" />
+            
+            <!-- text -->
+            <text id="url" text-anchor="start" font-family="{{ card_design['card']['font_family'] }}, 'Open Sans', sans-serif" font-size="{{ card_design['card']['font_size']|to_dpi }}" x="{{ card_design['card']['url']['x']|to_dpi }}" y="{{ card_design['card']['url']['y']|to_dpi }}">
+                <tspan font-weight="900">URL:</tspan>
+                <tspan>{{ card_design["url"] }}</tspan>
+            </text>
+            <text id="code" text-anchor="start" font-family="{{ card_design['card']['font_family'] }}, 'Open Sans', sans-serif" font-size="{{ card_design['card']['font_size']|to_dpi }}" x="{{ card_design['card']['code']['x']|to_dpi }}" y="{{ card_design['card']['code']['y']|to_dpi }}">
+                <tspan font-weight="900">Code:</tspan>
+                <tspan>{{ card["code"] }}</tspan>
+            </text>
+            <text id="batch" text-anchor="end" font-family="{{ card_design['card']['font_family'] }}, 'Open Sans', sans-serif" font-size="{{ card_design['card']['font_size_small']|to_dpi }}" x="{{ card_design['card']['batch']['x']|to_dpi }}" y="{{ card_design['card']['batch']['y']|to_dpi }}">
+                <tspan font-weight="900">Batch ID:</tspan>
+                <tspan>{{ card["batch"] }}</tspan>
+            </text>
+            {% if card_design['preview'] %}
+                <text fill="#DDD" font-size="160" fill-opacity=".75" text-anchor="middle" x="320" y="580" transform="rotate(-25)">PREVIEW</text>
+            {% endif %}
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,5 @@
+.venv
+.uuid
+qr_codes
+__pycache__
+.last_seq
