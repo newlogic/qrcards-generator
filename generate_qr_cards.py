@@ -27,32 +27,32 @@ def generate_pdf(codes, batch, base_url, url):
 
     # Value in mm, use to_dpi to convert.
     card_design = {
-        "preview": True,
+        "preview": False,
         "logo": {
             "image": get_file_as_base64(path.join(settings.TEMPLATES_DIR, "assets/wfp-logo.png")),
             "x": 189,
-            "y": 95,
+            "y": 75,
             "w": 174,
             "h": 75,
         },
         "card": {
             "qr": {
                 "x": 53,
-                "y": 80,
+                "y": 60,
                 "w": 80,
                 "h": 80,
             },
             "url": {
                 "x": 35,
-                "y": 215,
+                "y": 195,
             },
             "code": {
                 "x": 35,
-                "y": 255,
+                "y": 235,
             },
             "batch": {
                 "x": 363,
-                "y": 268,
+                "y": 248,
             },
             "font_family": "DejaVu Sans Condensed",
             "font_size": 16,
@@ -101,8 +101,8 @@ def generate_qr_cards(base_url, url, cards, batch):
     last_seq = utils.get_last_seq()
     generated_codes = []
     for (i, uid) in utils.unique_id_generator(last_seq=last_seq, upper_bound_id=cards):
-        url = f'{url}{uid}'
-        create_qrcode(generate_qrcode(url, size=15), uid)
+        qr_url = f'{url}{uid}'
+        create_qrcode(generate_qrcode(qr_url, size=15), uid)
         generated_codes.append(uid)
 
     utils.save_last_seq(i)

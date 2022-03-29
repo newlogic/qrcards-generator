@@ -32,18 +32,17 @@
 
     <use xlink:href="#card-1" transform="translate(0, 0)"/>
     <use xlink:href="#card-2" transform="translate(1181, 0)"/>
-    <use xlink:href="#card-3" transform="translate(0, 912.76)"/>
-    <use xlink:href="#card-4" transform="translate(1181, 912.76)"/>
-    <use xlink:href="#card-5" transform="translate(0, 1786.77)"/>
-    <use xlink:href="#card-6" transform="translate(1181, 1786.77)"/>
-    <use xlink:href="#card-7" transform="translate(0, 2660.78)"/>
-    <use xlink:href="#card-8" transform="translate(1181, 2660.78)"/>
+    <use xlink:href="#card-3" transform="translate(0, 844.89)"/>
+    <use xlink:href="#card-4" transform="translate(1181, 844.89)"/>
+    <use xlink:href="#card-5" transform="translate(0, 1689.79)"/>
+    <use xlink:href="#card-6" transform="translate(1181, 1689.79)"/>
+    <use xlink:href="#card-7" transform="translate(0, 2534.69)"/>
+    <use xlink:href="#card-8" transform="translate(1181, 2534.69)"/>
 
     <g class="cut-lines" display="inline">
         <line x1="1181" x2="1181" y1="0" y2="3390" stroke="#333" stroke-width="2" stroke-dasharray="2 10" />
-        <line x1="0" x2="2362" y1="912.76" y2="912.76" stroke="#333" stroke-width="2" stroke-dasharray="2 10" />
-        <line x1="0" x2="2362" y1="1786.77" y2="1786.77" stroke="#333" stroke-width="2" stroke-dasharray="2 10" />
-        <line x1="0" x2="2362" y1="2660.78" y2="2660.78" stroke="#333" stroke-width="2" stroke-dasharray="2 10" />
-        <line x1="0" x2="2362" y1="3534.79" y2="3534.79" stroke="#333" stroke-width="2" stroke-dasharray="2 10" />
+        <line x1="0" x2="2362" y1="844.89" y2="844.89" stroke="#333" stroke-width="2" stroke-dasharray="2 10" />
+        <line x1="0" x2="2362" y1="1689.79" y2="1689.79" stroke="#333" stroke-width="2" stroke-dasharray="2 10" />
+        <line x1="0" x2="2362" y1="2534.69" y2="2534.69" stroke="#333" stroke-width="2" stroke-dasharray="2 10" />
     </g>
 </svg>
