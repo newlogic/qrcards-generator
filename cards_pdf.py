@@ -10,6 +10,7 @@ from os import path
 from timeit import default_timer as timer
 
 import qrcode
+from packaging import version
 from pdfrw import IndirectPdfDict, PdfReader, PdfWriter
 from PIL import Image, ImageDraw
 from qrcode.image.pil import PilImage
@@ -18,6 +19,8 @@ import settings
 import template
 
 logger = getLogger(__name__)
+rsvg_convert_version = None
+rsvg_convert_version_2520 = version.parse('2.52.0')
 
 
 def mm2px(mm, dpi=300):
@@ -97,26 +100,55 @@ def get_fontconfig_env():
     return env
 
 
+def get_rsvg_convert_version():
+    global rsvg_convert_version
+    if rsvg_convert_version is None:
+        result = subprocess.run(
+            [
+                "rsvg-convert",
+                "-v",
+            ],
+            capture_output=True,
+            text=True,
+            env=get_fontconfig_env(),
+        )
+        rsvg_convert_version = version.parse(result.stdout.strip().split()[-1])
+    return rsvg_convert_version
+
+
 def convert_svgs_to_pdf(svg_files, output):
     if not svg_files:
         raise ValueError("No SVG to render.")
 
-    # FIXME: Check version of rsvg-convert
+    logger.debug(f"rsvg-convert version {get_rsvg_convert_version()}")
+
+    command = [
+        "rsvg-convert",
+        "-f",
+        "pdf",
+    ]
+
+    # Physical page size parameters support from version 2.52.0
+    if get_rsvg_convert_version() >= rsvg_convert_version_2520:
+        logger.debug("Support physical page size, using A4 size with 210mm x 297mm.")
+        command += [
+            "--page-width=210mm",
+            "--page-height=297mm",
+        ]
+
+    command += [
+        "-d",
+        "300",
+        "-p",
+        "300",
+        "-o",
+        output,
+    ]
+
     start = timer()
     with open(os.devnull, "wb") as devnull:
         return_value = subprocess.check_call(
-            [
-                "rsvg-convert",
-                "-f",
-                "pdf",
-                "-d",
-                "300",
-                "-p",
-                "300",
-                "-o",
-                output,
-            ]
-            + svg_files,
+            command + svg_files,
             stdout=devnull,
             env=get_fontconfig_env(),
         )
