@@ -12,7 +12,7 @@ import utils
 logger = getLogger('QR')
 
 
-def generate_pdf(codes, batch, base_url, url, out):
+def generate_pdf(codes, batch, base_url, url, out, preview):
     logger.debug("Creating sheets..")
     batch_no = f'{batch:02d}'
     pdf_filename = f"qrcards_batch_{batch_no}.pdf"
@@ -27,7 +27,7 @@ def generate_pdf(codes, batch, base_url, url, out):
 
     # Value in mm, use to_dpi to convert.
     card_design = {
-        "preview": False,
+        "preview": preview,
         "logo": {
             "image": get_file_as_base64(path.join(settings.TEMPLATES_DIR, "assets/wfp-logo.png")),
             "x": 189,
@@ -96,7 +96,8 @@ def generate_pdf(codes, batch, base_url, url, out):
 @click.option("--cards", type=int, required=True, help="Number of cards to generate")
 @click.option("--batch", type=int, required=True, help="Batch number")
 @click.option("--out", type=str, help="Output directory", default=settings.BASE_DIR)
-def generate_qr_cards(base_url, url, cards, batch, out):
+@click.option("--preview", is_flag=True, show_default=True, help="PDF render with PREVIEW background", default=settings.PREVIEW)
+def generate_qr_cards(base_url, url, cards, batch, out, preview):
     logger.info('QR Cards generator.')
     logger.info('=' * 80)
     
@@ -119,7 +120,7 @@ def generate_qr_cards(base_url, url, cards, batch, out):
         logger.info(f'{code}')
     logger.info('-' * 80)
 
-    generate_pdf(generated_codes, batch, base_url, url, out)
+    generate_pdf(codes=generated_codes, batch=batch, base_url=base_url, url=url, out=out, preview=preview)
 
 
 if __name__ == "__main__":

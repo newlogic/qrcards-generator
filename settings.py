@@ -11,6 +11,8 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 FONTS_DIR = os.path.join(TEMPLATES_DIR, 'assets', 'fonts')
 QR_FILE_DIR = os.path.join(BASE_DIR, 'qr_codes')
 
+PREVIEW = False
+
 HASHIDS_SALT = os.environ.get("HASHIDS_SALT", '$6$O1UAtet1RQADaQRI')
 HASHIDS_MIN_LENGTH = 12
 

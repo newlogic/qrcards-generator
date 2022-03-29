@@ -32,6 +32,9 @@ docker build -t newlogic/qrcards_generator .
 # Run
 # PDF and .last_seq files will save to output directory
 docker run -it --rm -v $PWD/output:/output newlogic/qrcards_generator --cards 10 --batch 1 --base-url https://ukr.reg.scope.wfp.org/ --url 'https://ukr.reg.scope.wfp.org/ukr/code/?code=' --out /output
+
+# PDF with PREVIEW
+docker run -it --rm -v $PWD/output:/output newlogic/qrcards_generator --cards 10 --batch 1 --base-url https://ukr.reg.scope.wfp.org/ --url 'https://ukr.reg.scope.wfp.org/ukr/code/?code=' --out /output --preview
 ```
 
 
