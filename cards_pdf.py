@@ -132,8 +132,8 @@ def convert_svgs_to_pdf(svg_files, output):
     if get_rsvg_convert_version() >= rsvg_convert_version_2520:
         logger.debug("Support physical page size, using A4 size with 210mm x 297mm.")
         command += [
-            "--page-width=210mm",
-            "--page-height=297mm",
+            # "--page-width=210mm",
+            # "--page-height=297mm",
         ]
 
     command += [
@@ -280,7 +280,7 @@ class CardsPDF():
 
 
     def render_page(self, sheet):
-        context = {"sheet_page": sheet["sheet_number"]}
+        context = {"sheet_page": sheet["sheet_number"], "debug": True}
 
         print(f"Preparing PDF sheet number {sheet['sheet_number']}.")
         # get number of cards per page

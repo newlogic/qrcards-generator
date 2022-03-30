@@ -4,18 +4,31 @@
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
-    width="200mm" height="287mm"
-    viewBox="0 0 2362 3390"
+    width="595px" height="842px"
+    viewBox="0 0 2100 2970"
 >
     <!--
     viewBox is converted to 300dpi, optimal for printing
     -->
     <style type="text/css">
     <![CDATA[
+        text {
+            font-family: DejaVu Sans;
+            font-stretch: condensed;
+        }
+
         .monospace {
             font-family: OCRB;
             font-stretch: normal;
         }
+
+        {% if debug %}
+        .debug-element {
+            display: inline;
+        }
+        {% endif %}
+
+        {{ extra_css }}
     ]]>
     </style>
 
@@ -30,19 +43,21 @@
         {{ card_8 }}
     </defs>
 
-    <use xlink:href="#card-1" transform="translate(0, 0)"/>
-    <use xlink:href="#card-2" transform="translate(1181, 0)"/>
-    <use xlink:href="#card-3" transform="translate(0, 844.89)"/>
-    <use xlink:href="#card-4" transform="translate(1181, 844.89)"/>
-    <use xlink:href="#card-5" transform="translate(0, 1689.79)"/>
-    <use xlink:href="#card-6" transform="translate(1181, 1689.79)"/>
-    <use xlink:href="#card-7" transform="translate(0, 2534.69)"/>
-    <use xlink:href="#card-8" transform="translate(1181, 2534.69)"/>
 
-    <g class="cut-lines" display="inline">
-        <line x1="1181" x2="1181" y1="0" y2="3390" stroke="#333" stroke-width="2" stroke-dasharray="2 10" />
-        <line x1="0" x2="2362" y1="844.89" y2="844.89" stroke="#333" stroke-width="2" stroke-dasharray="2 10" />
-        <line x1="0" x2="2362" y1="1689.79" y2="1689.79" stroke="#333" stroke-width="2" stroke-dasharray="2 10" />
-        <line x1="0" x2="2362" y1="2534.69" y2="2534.69" stroke="#333" stroke-width="2" stroke-dasharray="2 10" />
+    <use xlink:href="#card-1" transform="translate(0, 0)"/>
+    <use xlink:href="#card-2" transform="translate(1050, 0)"/>
+    <use xlink:href="#card-3" transform="translate(0, 742.5)"/>
+    <use xlink:href="#card-4" transform="translate(1050, 742.5)"/>
+    <use xlink:href="#card-5" transform="translate(0, 1485)"/>
+    <use xlink:href="#card-6" transform="translate(1050, 1485)"/>
+    <use xlink:href="#card-7" transform="translate(0, 2227.5)"/>
+    <use xlink:href="#card-8" transform="translate(1050, 2227.5)"/>
+
+    <g class="cut-lines debug-element" display="none">
+        <line x1="1050" x2="1050" y1="0" y2="2970" stroke="#333" stroke-width="2" stroke-dasharray="2 10" />
+        <line x1="0" x2="2100" y1="742.5" y2="742.5" stroke="#333" stroke-width="2" stroke-dasharray="2 10" />
+        <line x1="0" x2="2100" y1="1485" y2="1485" stroke="#333" stroke-width="2" stroke-dasharray="2 10" />
+        <line x1="0" x2="2100" y1="2227.5" y2="2227.5" stroke="#333" stroke-width="2" stroke-dasharray="2 10" />
+        <line x1="0" x2="2100" y1="2970" y2="2970" stroke="#333" stroke-width="2" stroke-dasharray="2 10" />
     </g>
 </svg>

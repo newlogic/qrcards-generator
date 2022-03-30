@@ -20,41 +20,14 @@ def generate_pdf(codes, split_by, batch, base_url, url, out, preview):
     card_design = {
         "preview": preview,
         "logo": {
-            "image": get_file_as_base64(path.join(settings.TEMPLATES_DIR, "assets/wfp-logo.png")),
-            "x": 189,
-            "y": 75,
-            "w": 174,
-            "h": 75,
-        },
-        "card": {
-            "qr": {
-                "x": 53,
-                "y": 60,
-                "w": 80,
-                "h": 80,
-            },
-            "url": {
-                "x": 35,
-                "y": 195,
-            },
-            "code": {
-                "x": 35,
-                "y": 235,
-            },
-            "batch": {
-                "x": 363,
-                "y": 248,
-            },
-            "font_family": "DejaVu Sans Condensed",
-            "font_size": 16,
-            "font_size_small": 11,
+            "image": get_file_as_base64(path.join(settings.TEMPLATES_DIR, "assets/wfp-logo.png"))
         },
         "url": base_url
     }
     total_cards = len(codes)
     card_per_sheet = 8
 
-    batch_no = f'{batch:02d}'
+    batch_no = f"{batch:08d}"
     pdf_metadata = {
         "Title": f"WFP Self Registration QR Codes",
         "Author": "WFP",
