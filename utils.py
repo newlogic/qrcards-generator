@@ -27,7 +27,7 @@ def unique_id_generator(last_seq, upper_bound_id):
     # Use last_seq from stored file if exists
     start_seq = last_seq + 1
 
-    hashids = Hashids(salt=settings.HASHIDS_SALT, min_length=settings.HASHIDS_MIN_LENGTH)
+    hashids = Hashids(salt=settings.HASHIDS_SALT, min_length=settings.HASHIDS_MIN_LENGTH, alphabet='123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz')
 
     for i in range(start_seq, upper_bound_id+start_seq):
         yield (i, hashids.encode(i))
