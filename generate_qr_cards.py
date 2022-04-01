@@ -15,7 +15,7 @@ import utils
 logger = getLogger('QR')
 
 
-def generate_pdf(codes, split_by, batch, base_url, url, out, preview):
+def generate_pdf(codes, split_by, batch, base_url, url, out, preview, card_template):
     # Value in px calculated with DPI 96, use to_dpi filter in template to convert to DPI 300.
     card_design = {
         "preview": preview,
@@ -74,7 +74,8 @@ def generate_pdf(codes, split_by, batch, base_url, url, out, preview):
             sheets,
             cards,
             card_design,
-            # work_dir=settings.QR_FILE_DIR
+            # work_dir=settings.QR_FILE_DIR,
+            card_template=card_template
         )
         logger.debug("Writing data to PDF.")
         pdf.create(pdf_file, pdf_metadata)
@@ -111,7 +112,8 @@ def generate_code(total_card, url, out):
 @click.option("--batch", type=int, required=True, help="Batch number")
 @click.option("--out", type=str, help="Output directory", default=settings.OUTPUT_DIR)
 @click.option("--preview", is_flag=True, show_default=True, help="PDF render with PREVIEW background", default=settings.PREVIEW)
-def generate_qr_cards(base_url, url, cards, split_by, batch, out, preview):
+@click.option("--card-template", type=str, required=False, default="card.svg")
+def generate_qr_cards(base_url, url, cards, split_by, batch, out, preview, card_template):
     logger.info('QR Cards generator.')
     logger.info('=' * 80)
     logger.info(f"Base URL: {base_url}")
@@ -121,6 +123,7 @@ def generate_qr_cards(base_url, url, cards, split_by, batch, out, preview):
     logger.info(f"Batch no: {batch}")
     logger.info(f"Output path: {out}")
     logger.info(f"Preview: {'Yes' if preview else 'No'}")
+    logger.info(f"Card template: {card_template}")
     logger.info('-' * 80)
 
     if split_by > cards:
@@ -132,7 +135,7 @@ def generate_qr_cards(base_url, url, cards, split_by, batch, out, preview):
 
     generated_codes = generate_code(cards, url=url, out=out)
 
-    generate_pdf(codes=generated_codes, split_by=split_by, batch=batch, base_url=base_url, url=url, out=out, preview=preview)
+    generate_pdf(codes=generated_codes, split_by=split_by, batch=batch, base_url=base_url, url=url, out=out, preview=preview, card_template=card_template)
 
     # Cleanup
     shutil.rmtree(settings.QR_FILE_DIR)

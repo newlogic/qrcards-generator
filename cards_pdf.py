@@ -206,16 +206,16 @@ def prepare_image_for_pdf(input, output, size=None, color=(255, 255, 255)):
 
 class CardsPDF():
 
-    page_template = template.get_template("page.svg")
-    card_template = template.get_template("card.svg")
     work_dir = None
 
-    def __init__(self, sheets, cards, card_design, debug=False, work_dir=None):
+    def __init__(self, sheets, cards, card_design, debug=False, work_dir=None, card_template="card.svg"):
         self.sheets = sheets
         self.cards = list(cards)
         self.card_design = card_design
         self.debug = debug
         self.work_dir = work_dir
+        self.page_template = template.get_template("page.svg")
+        self.card_template = template.get_template(card_template)
 
     def copy_image(self, image, filename, resize=False, verbatim=False):
         if resize and verbatim:
