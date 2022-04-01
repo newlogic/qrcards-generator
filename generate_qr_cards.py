@@ -56,6 +56,8 @@ def generate_pdf(codes, split_by, batch, base_url, url, out, preview, card_templ
         card_cnt = 0
         pdf_filename = f"qrcards_batch_{batch_no}_{i+1}.pdf"
         pdf_file = path.join(pdf_out_dir, pdf_filename)
+        code_file = pdf_file.replace(".pdf", ".txt")
+        write_codes_to_file(current_code_partition, code_file)
         for c in current_code_partition:
             cards.append({
                 "card_number": card_cnt + 1,
@@ -80,6 +82,7 @@ def generate_pdf(codes, split_by, batch, base_url, url, out, preview, card_templ
         logger.debug("Writing data to PDF.")
         pdf.create(pdf_file, pdf_metadata)
         logger.debug(f"Save PDF: {pdf_file}")
+    return pdf_out_dir
 
 
 def generate_code(total_card, url, out):
@@ -103,6 +106,12 @@ def generate_code(total_card, url, out):
     logger.info('-' * 80)
 
     return generated_codes
+
+def write_codes_to_file(codes, filename):
+    with open(filename, 'w') as f:
+        for code in codes:
+            f.write(f'{code}\n')
+
 
 @click.command()
 @click.option("--base-url", type=str, default=settings.SELF_REGISTRATION_BASE_URL, help="Self registration base url e.g https://example.com/reg")
@@ -135,7 +144,9 @@ def generate_qr_cards(base_url, url, cards, split_by, batch, out, preview, card_
 
     generated_codes = generate_code(cards, url=url, out=out)
 
-    generate_pdf(codes=generated_codes, split_by=split_by, batch=batch, base_url=base_url, url=url, out=out, preview=preview, card_template=card_template)
+    pdf_out_dir = generate_pdf(codes=generated_codes, split_by=split_by, batch=batch, base_url=base_url, url=url, out=out, preview=preview, card_template=card_template)
+
+    write_codes_to_file(generated_codes, path.join(pdf_out_dir, f"codes_{batch}.txt"))
 
     # Cleanup
     shutil.rmtree(settings.QR_FILE_DIR)
