@@ -53,8 +53,8 @@
             <image id="qr" x="742.2" y="100" width="227.8" height="227.8" preserveAspectRatio="none" xlink:href="data:image/png;base64,{{ card['qr_image'] }}" />
             
             <!-- text -->
-            <text id="help-text" text-anchor="middle" font-size="32" x="525" y="420">
-                <tspan>To enroll for assistance, open the URL and enter the code:</tspan>
+            <text id="help-text" text-anchor="start" font-size="32" x="80" y="420">
+                <tspan>To enroll for WFP assistance, open the URL and enter the code:</tspan>
             </text>
 
             <text id="url" text-anchor="start" font-size="48" x="80" y="500">
