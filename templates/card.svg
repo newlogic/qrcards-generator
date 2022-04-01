@@ -53,7 +53,7 @@
             <image id="qr" x="742.2" y="100" width="227.8" height="227.8" preserveAspectRatio="none" xlink:href="data:image/png;base64,{{ card['qr_image'] }}" />
             
             <!-- text -->
-            <text id="help-text" text-anchor="start" font-size="32" x="100" y="420">
+            <text id="help-text" text-anchor="middle" font-size="32" x="525" y="420">
                 <tspan>To register for assistance, open the url and enter the code:</tspan>
             </text>
 
