@@ -69,7 +69,7 @@
                 <tspan class="monospace">{{ card["code"] }}</tspan>
             </text>
             <text id="batch" text-anchor="end" font-size="28" x="970" y="650">
-                <tspan>Batch ID:</tspan>
+                <tspan>ID:</tspan>
                 <tspan class="monospace">{{ card["batch"] }}</tspan>
             </text>
             
