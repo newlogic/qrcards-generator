@@ -42,7 +42,6 @@ def generate_pdf(codes, split_by, batch, base_url, url, out, preview, card_templ
     total_cards = len(codes)
     card_per_sheet = 8
 
-    batch_no = f"{batch:08d}"
     pdf_metadata = {
         "Title": "QRCards",
         "Author": "QRCards Generator",
@@ -50,8 +49,12 @@ def generate_pdf(codes, split_by, batch, base_url, url, out, preview, card_templ
         "CreationDate": datetime.utcnow().strftime("D:%Y%m%d%H%M%SZ"),
     }
 
-    pdf_out_dir = f"{out}/{datetime.utcnow().strftime('%Y%m%d%H%M%S')}"
+    base_out_dir = f"{out}/{batch:04d}"
+    os.mkdir(base_out_dir)
+    pdf_out_dir = f"{base_out_dir}/PDFs"
     os.mkdir(pdf_out_dir)
+    codes_out_dir = f"{base_out_dir}/Codes"
+    os.mkdir(codes_out_dir)
 
     total_files = 1
     if split_by != 0:
@@ -69,11 +72,20 @@ def generate_pdf(codes, split_by, batch, base_url, url, out, preview, card_templ
         cards = []
         sheet_cnt = 0
         card_cnt = 0
-        pdf_filename = f"qrcards_batch_{batch_no}_{i+1}.pdf"
+
+        pdf_filename = f"qrcards_batch_{batch:04d}_{i + 1:02d}.pdf"
         pdf_file = path.join(pdf_out_dir, pdf_filename)
-        code_file = pdf_file.replace(".pdf", ".txt")
+        code_file = pdf_file.replace(".pdf", ".txt").replace(pdf_out_dir, codes_out_dir)
         write_codes_to_file(current_code_partition, code_file)
+
         for c in current_code_partition:
+            if card_cnt % card_per_sheet == 0:
+                sheet_cnt += 1
+                sheets.append({
+                    "sheet_number": sheet_cnt,
+                })
+                batch_prefix = f"{batch:04d}.{i + 1:03d}"
+            batch_no = f"{batch_prefix}.{card_cnt + 1:03d}"
             cards.append({
                 "card_number": card_cnt + 1,
                 "code": c,
