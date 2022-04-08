@@ -7,6 +7,6 @@ then
 else
       TEMPLATE=$1
 fi
-OUTPUT=$(docker run -it --rm -v $PWD/output:/app/output newlogic/qrcards_generator --cards 8 --batch 1 --base-url https://ukr.reg.scope.wfp.org/ --url 'https://ukr.reg.scope.wfp.org/ukr/code/?code=' --card-template $TEMPLATE --preview)
+OUTPUT=$(docker run -it --rm -v $PWD/output:/app/output newlogic/qrcards_generator --cards 100 --split-by 16 --batch 42 --base-url https://ukr.reg.scope.wfp.org/ --url 'https://ukr.reg.scope.wfp.org/ukr/code/?code=' --card-template $TEMPLATE --preview)
 PDF_PATH=$(echo -n $OUTPUT | sed "s@^.*/app/@@g" | sed "s/\s$//")
 xdg-open "$PDF_PATH"
